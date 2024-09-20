@@ -16,38 +16,43 @@ public class PacienteRepositoryImpl implements PacienteRepository {
                     paciente.getGenero() + "," + paciente.getDireccion() + "," + paciente.getTelefono());
             writer.newLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al guardar el paciente: " + e.getMessage(), e);
         }
     }
 
     @Override
     public Paciente buscarPacientePorNombre(String nombre) {
-        List<Paciente> pacientes = obtenerTodosLosPacientes();
-        for (Paciente paciente : pacientes) {
-            if (paciente.getNombre().equalsIgnoreCase(nombre)) {
-                return paciente;
-            }
-        }
-        return null;
+        return obtenerTodosLosPacientes().stream()
+                .filter(paciente -> paciente.getNombre().equalsIgnoreCase(nombre))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public void actualizarPaciente(Paciente pacienteActualizado) {
         List<Paciente> pacientes = obtenerTodosLosPacientes();
+        boolean actualizado = false;
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
             for (Paciente paciente : pacientes) {
                 if (paciente.getNombre().equalsIgnoreCase(pacienteActualizado.getNombre())) {
                     writer.write(pacienteActualizado.getNombre() + "," + pacienteActualizado.getApellido() + "," +
                             pacienteActualizado.getEdad() + "," + pacienteActualizado.getGenero() + "," +
                             pacienteActualizado.getDireccion() + "," + pacienteActualizado.getTelefono());
+                    actualizado = true;
                 } else {
                     writer.write(paciente.getNombre() + "," + paciente.getApellido() + "," + paciente.getEdad() + "," +
                             paciente.getGenero() + "," + paciente.getDireccion() + "," + paciente.getTelefono());
                 }
                 writer.newLine();
             }
+
+            if (!actualizado) {
+                throw new RuntimeException("Paciente no encontrado para actualizar: " + pacienteActualizado.getNombre());
+            }
+
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar el paciente: " + e.getMessage(), e);
         }
     }
     @Override
@@ -61,7 +66,7 @@ public class PacienteRepositoryImpl implements PacienteRepository {
                 pacientes.add(paciente);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error al leer los pacientes: " + e.getMessage(), e);
         }
         return pacientes;
     }

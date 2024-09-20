@@ -1,6 +1,10 @@
 package org.example.domain;
 
-public class Cita {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Cita implements Serializable {
     private String fecha;
     private String hora;
     private String motivo;

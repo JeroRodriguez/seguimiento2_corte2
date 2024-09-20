@@ -1,57 +1,91 @@
-package org.example.application;
+package org.example;
 
 import org.example.application.service.PacienteService;
 import org.example.application.service.PacienteServiceImpl;
+import org.example.domain.Cita;
 import org.example.domain.Paciente;
 import org.example.infrastructure.repository.PacienteRepositoryImpl;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
     private static PacienteService pacienteService = new PacienteServiceImpl(new PacienteRepositoryImpl());
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Probando que sirve la funcion de agregacion pero falta agregarla al menu de opciones
+        Paciente jeronimo = new Paciente("Jeronimo", "Rodriguez", 18, "Masculino", "Calle 42", "3188225451");
+        Cita cita1 = new Cita("24 nov 2024", "3:00 pm", "Dolor en la garganta", jeronimo);
+        System.out.println(cita1);
+
+        jeronimo.agregarCita(cita1);
+        System.out.println(jeronimo.getCitas());
+        // ==================================
+
         int opcion;
         do {
-            System.out.println("1. Registrar Paciente");
-            System.out.println("2. Mostrar Pacientes");
-            System.out.println("3. Salir");
-            System.out.print("Seleccione una opción: ");
-            opcion = scanner.nextInt();
-            scanner.nextLine();  // Limpiar el buffer
+            String menu = "1. Registrar Paciente\n"
+                    + "2. Mostrar Pacientes\n"
+                    + "3. Salir\n"
+                    + "Seleccione una opción:";
+            String opcionStr = JOptionPane.showInputDialog(null, menu, "Menú", JOptionPane.PLAIN_MESSAGE);
+
+            // Manejar si el usuario cierra la ventana o cancela
+            if (opcionStr == null) {
+                break;  // Salir si se cancela o cierra el cuadro de diálogo
+            }
+
+            try {
+                opcion = Integer.parseInt(opcionStr);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Por favor, ingrese una opción válida.", "Error", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
 
             switch (opcion) {
                 case 1 -> registrarPaciente();
                 case 2 -> mostrarPacientes();
-                case 3 -> System.out.println("Saliendo...");
-                default -> System.out.println("Opción inválida");
+                case 3 -> JOptionPane.showMessageDialog(null, "Saliendo...");
+                default -> JOptionPane.showMessageDialog(null, "Opción inválida", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } while (opcion != 3);
+        } while (true);
     }
-    private static void registrarPaciente() {
-        System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Apellido: ");
-        String apellido = scanner.nextLine();
-        System.out.print("Edad: ");
-        int edad = scanner.nextInt();
-        scanner.nextLine();  // Limpiar buffer
-        System.out.print("Género: ");
-        String genero = scanner.nextLine();
-        System.out.print("Dirección: ");
-        String direccion = scanner.nextLine();
-        System.out.print("Teléfono: ");
-        String telefono = scanner.nextLine();
 
-        Paciente paciente = new Paciente(nombre, apellido, edad, genero, direccion, telefono);
-        pacienteService.registrarPaciente(paciente);
-        System.out.println("Paciente registrado correctamente.");
+    private static void registrarPaciente() throws NumberFormatException {
+        try {
+            String nombre = JOptionPane.showInputDialog(null, "Ingrese el nombre:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            if (nombre == null || nombre.isEmpty()) throw new IllegalArgumentException("Nombre no puede estar vacío");
+
+            String apellido = JOptionPane.showInputDialog(null, "Ingrese el apellido:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            if (apellido == null || apellido.isEmpty()) throw new IllegalArgumentException("Apellido no puede estar vacío");
+
+            String edadStr = JOptionPane.showInputDialog(null, "Ingrese la edad:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            int edad = Integer.parseInt(edadStr);
+
+            String genero = JOptionPane.showInputDialog(null, "Ingrese el género:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            if (genero == null || genero.isEmpty()) throw new IllegalArgumentException("Género no puede estar vacío");
+
+            String direccion = JOptionPane.showInputDialog(null, "Ingrese la dirección:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            if (direccion == null || direccion.isEmpty()) throw new IllegalArgumentException("Dirección no puede estar vacía");
+
+            String telefono = JOptionPane.showInputDialog(null, "Ingrese el teléfono:", "Registro de Paciente", JOptionPane.PLAIN_MESSAGE);
+            if (telefono == null || telefono.isEmpty()) throw new IllegalArgumentException("Teléfono no puede estar vacío");
+
+            Paciente paciente = new Paciente(nombre, apellido, edad, genero, direccion, telefono);
+            pacienteService.registrarPaciente(paciente);
+
+            JOptionPane.showMessageDialog(null, "Paciente registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private static void mostrarPacientes() {
+        StringBuilder pacientesList = new StringBuilder();
         for (Paciente paciente : pacienteService.listarPacientes()) {
-            System.out.println(paciente);
+            pacientesList.append(paciente).append("\n");
         }
+
+        JOptionPane.showMessageDialog(null, pacientesList.length() > 0 ? pacientesList.toString() : "No hay pacientes registrados.", "Lista de Pacientes", JOptionPane.INFORMATION_MESSAGE);
     }
 }
