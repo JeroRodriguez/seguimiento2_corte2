@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7efc23a-1b32-4d32-8525-8ca5c43c1111" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/application/service/PacienteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/application/service/PacienteServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/Cita.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/Cita.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/domain/Paciente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/domain/Paciente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/infrastructure/repository/PacienteRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/infrastructure/repository/PacienteRepositoryImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="c7efc23a-1b32-4d32-8525-8ca5c43c1111" name="Changes" comment="Cambios con persistencia de datos en el primer ejercicio" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +93,28 @@
       <option name="presentableId" value="Default" />
       <updated>1726590614767</updated>
     </task>
+    <task id="LOCAL-00001" summary="Cambios con persistencia de datos en el primer ejercicio">
+      <option name="closed" value="true" />
+      <created>1726868502381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726868502381</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Cambios con persistencia de datos en el primer ejercicio">
+      <option name="closed" value="true" />
+      <created>1726868520544</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726868520544</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Create README.md" />
+    <MESSAGE value="Cambios con persistencia de datos en el primer ejercicio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambios con persistencia de datos en el primer ejercicio" />
   </component>
 </project>
