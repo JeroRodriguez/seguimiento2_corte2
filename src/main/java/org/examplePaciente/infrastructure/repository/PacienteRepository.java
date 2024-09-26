@@ -1,6 +1,6 @@
-package org.example.infrastructure.repository;
+package org.examplePaciente.infrastructure.repository;
 
-import org.example.domain.Paciente;
+import org.examplePaciente.domain.Paciente;
 
 import java.util.List;
 

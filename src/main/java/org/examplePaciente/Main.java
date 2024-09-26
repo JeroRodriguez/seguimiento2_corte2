@@ -1,13 +1,12 @@
-package org.example;
+package org.examplePaciente;
 
-import org.example.application.service.PacienteService;
-import org.example.application.service.PacienteServiceImpl;
-import org.example.domain.Cita;
-import org.example.domain.Paciente;
-import org.example.infrastructure.repository.PacienteRepositoryImpl;
+import org.examplePaciente.application.service.PacienteService;
+import org.examplePaciente.application.service.PacienteServiceImpl;
+import org.examplePaciente.domain.Cita;
+import org.examplePaciente.domain.Paciente;
+import org.examplePaciente.infrastructure.repository.PacienteRepositoryImpl;
 
 import javax.swing.*;
-import java.util.Scanner;
 
 public class Main {
     private static PacienteService pacienteService = new PacienteServiceImpl(new PacienteRepositoryImpl());

@@ -1,6 +1,6 @@
-package org.example.application.service;
+package org.examplePaciente.application.service;
 
-import org.example.domain.Paciente;
+import org.examplePaciente.domain.Paciente;
 import java.util.List;
 
 public interface PacienteService {

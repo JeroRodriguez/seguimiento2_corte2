@@ -1,4 +1,4 @@
-package org.example.domain;
+package org.examplePaciente.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;

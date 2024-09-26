@@ -1,7 +1,7 @@
-package org.example.application.service;
+package org.examplePaciente.application.service;
 
-import org.example.domain.Paciente;
-import org.example.infrastructure.repository.PacienteRepository;
+import org.examplePaciente.domain.Paciente;
+import org.examplePaciente.infrastructure.repository.PacienteRepository;
 
 import java.util.List;
 
